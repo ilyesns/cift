@@ -1,0 +1,39 @@
+.link {
+  display: block;
+  padding: 8px 14px;
+  border-radius: var(--mantine-radius-xl);
+  font-size: var(--mantine-font-size-sm);
+  font-weight: 500;
+  text-decoration: none;
+  white-space: nowrap;
+  transition: background-color 150ms ease;
+}
+
+/* On the magenta header */
+.link[data-variant="header"] {
+  color: var(--mantine-color-white);
+  opacity: 0.88;
+}
+.link[data-variant="header"]:hover {
+  background: rgb(255 255 255 / 0.12);
+  opacity: 1;
+}
+.link[data-variant="header"][aria-current="page"] {
+  background: rgb(255 255 255 / 0.2);
+  opacity: 1;
+}
+
+/* In the phone drawer */
+.link[data-variant="drawer"] {
+  color: var(--mantine-color-text);
+  border-radius: var(--mantine-radius-md);
+  font-size: var(--mantine-font-size-md);
+}
+.link[data-variant="drawer"]:hover {
+  background: var(--mantine-color-default-hover);
+}
+.link[data-variant="drawer"][aria-current="page"] {
+  background: var(--mantine-color-brand-light);
+  color: var(--mantine-color-brand-light-color);
+  font-weight: 600;
+}

@@ -1,0 +1,20 @@
+.header {
+  background: var(--mantine-color-brand-7);
+  border-bottom: 0;
+  color: var(--mantine-color-white);
+
+  @mixin dark {
+    background: var(--mantine-color-brand-9);
+  }
+}
+
+.main {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+.content {
+  flex: 1;
+  width: 100%;
+}
