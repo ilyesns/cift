@@ -1,0 +1,22 @@
+# env
+.env
+
+# python
+__pycache__/
+*.pyc
+.venv/
+.pytest_cache/
+.ruff_cache/
+
+# node
+node_modules/
+dist/
+*.tsbuildinfo
+
+# flutter
+mobile/.dart_tool/
+mobile/build/
+
+# editors / OS
+.DS_Store
+.idea/
