@@ -14,7 +14,10 @@ class Settings(BaseSettings):
 
     app_name: str = "CIFT API"
     environment: str = "development"
+
     database_url: str = "postgresql+psycopg://cift:cift@localhost:5433/cift"
+    db_echo: bool = False  # True prints every SQL statement to the logs
+
     cors_origins: list[str] = ["http://localhost:5174"]
 
     default_locale: str = "it"
