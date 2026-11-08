@@ -1,0 +1,39 @@
+{
+  "brand": {
+    "name": "Comunità Islamica Firenze e Toscana",
+    "tagline": "Firenze · Toscana"
+  },
+  "nav": {
+    "main": "Navigazione principale",
+    "menu": "Menu",
+    "home": "Home",
+    "prayer": "Orari di preghiera",
+    "news": "Notizie",
+    "tourism": "Turismo",
+    "marketplace": "Bacheca",
+    "language": "Lingua"
+  },
+  "home": {
+    "eyebrow": "Benvenuti",
+    "title": "La comunità musulmana di Firenze e della Toscana, in un unico posto",
+    "subtitle": "Orari di preghiera ufficiali, notizie della comunità, visite guidate e una bacheca per lavoro e affitti.",
+    "sections": {
+      "prayer": { "title": "Orari di preghiera", "text": "Gli orari di oggi e del mese per Firenze." },
+      "news": { "title": "Notizie", "text": "Comunicazioni, eventi e notizie dalla comunità." },
+      "tourism": { "title": "Turismo", "text": "Visite guidate e guide locali in più lingue." },
+      "marketplace": { "title": "Bacheca", "text": "Offerte di lavoro e case in affitto, verificate dalla comunità." }
+    },
+    "open": "Apri"
+  },
+  "common": {
+    "comingSoon": "Questa sezione è in costruzione.",
+    "backHome": "Torna alla home"
+  },
+  "notFound": {
+    "title": "Pagina non trovata",
+    "text": "L'indirizzo potrebbe essere sbagliato o la pagina è stata spostata."
+  },
+  "footer": {
+    "rights": "Tutti i diritti riservati."
+  }
+}

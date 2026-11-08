@@ -1,4 +1,4 @@
-.PHONY: up down logs test test-unit test-api test-int lint fmt migrate revision downgrade psql
+.PHONY: up down logs test test-unit test-api test-int lint fmt migrate revision downgrade psql web-logs web-lint web-test web-sh
 
 up:
 	docker compose up -d --build
@@ -40,3 +40,16 @@ downgrade:
 
 psql:
 	docker compose exec db psql -U cift -d cift
+
+web-logs:
+	docker compose logs -f web
+
+web-lint:
+	docker compose exec web npm run lint
+	docker compose exec web npm run typecheck
+
+web-test:
+	docker compose exec web npm test
+
+web-sh:
+	docker compose exec web sh

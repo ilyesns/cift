@@ -1,0 +1,39 @@
+{
+  "brand": {
+    "name": "Islamic Community of Florence and Tuscany",
+    "tagline": "Florence · Tuscany"
+  },
+  "nav": {
+    "main": "Main navigation",
+    "menu": "Menu",
+    "home": "Home",
+    "prayer": "Prayer times",
+    "news": "News",
+    "tourism": "Tourism",
+    "marketplace": "Noticeboard",
+    "language": "Language"
+  },
+  "home": {
+    "eyebrow": "Welcome",
+    "title": "The Muslim community of Florence and Tuscany, in one place",
+    "subtitle": "Official prayer times, community news, guided tours and a noticeboard for jobs and rentals.",
+    "sections": {
+      "prayer": { "title": "Prayer times", "text": "Today's and this month's times for Florence." },
+      "news": { "title": "News", "text": "Announcements, events and news from the community." },
+      "tourism": { "title": "Tourism", "text": "Guided tours and local guides in several languages." },
+      "marketplace": { "title": "Noticeboard", "text": "Jobs and homes for rent, reviewed by the community." }
+    },
+    "open": "Open"
+  },
+  "common": {
+    "comingSoon": "This section is under construction.",
+    "backHome": "Back to home"
+  },
+  "notFound": {
+    "title": "Page not found",
+    "text": "The address may be wrong or the page has moved."
+  },
+  "footer": {
+    "rights": "All rights reserved."
+  }
+}

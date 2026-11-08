@@ -28,6 +28,18 @@ services:
     depends_on:
       db:
         condition: service_healthy
+  web:
+    build: ./web
+    environment:
+      VITE_API_URL: http://localhost:${API_PORT:-8010}/api/v1
+      VITE_POLLING: ${VITE_POLLING:-false}
+    ports:
+      - "${WEB_PORT:-5174}:5173"
+    volumes:
+      - ./web:/app
+      - /app/node_modules
+    depends_on:
+      - api
   adminer:
     image: adminer:4
     ports:

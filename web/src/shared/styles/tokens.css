@@ -1,0 +1,59 @@
+/*
+ * Design tokens. Brand magenta sampled from the logo: #a4116a.
+ * Use logical properties (margin-inline-start, padding-inline, inset-inline-end)
+ * instead of left/right so Arabic mirrors automatically under dir="rtl".
+ */
+:root {
+  --brand-700: #7e0c51;
+  --brand-600: #a4116a;
+  --brand-500: #c02a84;
+  --brand-100: #f7e3ef;
+  --brand-50: #fcf3f8;
+  --header-bg: #a4116a;
+  --on-brand: #ffffff;
+  --gold-500: #c9a34e;
+
+  --bg: #fbf8fa;
+  --surface: #ffffff;
+  --fg: #22161e;
+  --muted: #6e5d68;
+  --line: #eadfe6;
+
+  --ok: #2f7a55;
+  --warn: #b7791f;
+  --danger: #c0392b;
+
+  --font-latin: "Plus Jakarta Sans", "Segoe UI", system-ui, sans-serif;
+  --font-arabic: "IBM Plex Sans Arabic", "Noto Sans Arabic", "Segoe UI", sans-serif;
+  --font: var(--font-latin);
+
+  --radius-sm: 6px;
+  --radius: 12px;
+  --radius-lg: 20px;
+  --shadow: 0 1px 2px rgb(34 22 30 / 0.06), 0 8px 24px rgb(34 22 30 / 0.08);
+
+  --container: 1120px;
+  --gutter: max(16px, 4vw);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --brand-700: #f08ac2;
+    --brand-600: #e04a9f;
+    --brand-500: #e86bb1;
+    --brand-100: #3a1830;
+    --brand-50: #24131e;
+    --header-bg: #7e0c51;
+
+    --bg: #150e13;
+    --surface: #1f161c;
+    --fg: #f3e9ef;
+    --muted: #ae9aa6;
+    --line: #33252e;
+    color-scheme: dark;
+  }
+}
+
+:root[lang="ar"] {
+  --font: var(--font-arabic);
+}
