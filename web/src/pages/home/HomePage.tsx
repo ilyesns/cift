@@ -22,6 +22,7 @@ import { ROUTES } from "@/app/routes";
 import { useLang } from "@/shared/hooks/useLang";
 import { withLang } from "@/shared/lib/paths";
 import classes from "./HomePage.module.css";
+import { SystemStatus } from "@/features/system/SystemStatus";
 
 const SECTIONS = [
   { key: "prayer", route: ROUTES.prayer, icon: IconMoonStars },
@@ -80,6 +81,7 @@ export function HomePage() {
           </Card>
         ))}
       </SimpleGrid>
+            {import.meta.env.DEV && <SystemStatus />}
     </Stack>
   );
 }

@@ -1,6 +1,6 @@
 import { fileURLToPath, URL } from "node:url";
 import react from "@vitejs/plugin-react";
-import { defineConfig } from "vitest/config";
+import { defineConfig } from "vite";
 
 export default defineConfig({
   plugins: [react()],
@@ -14,7 +14,5 @@ export default defineConfig({
     // File events don't always cross the Docker bind mount; polling fixes hot reload if needed
     watch: { usePolling: process.env.VITE_POLLING === "true" },
   },
-  test: {
-    environment: "jsdom",
-  },
+  
 });

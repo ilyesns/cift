@@ -35,5 +35,19 @@
   },
   "footer": {
     "rights": "Tutti i diritti riservati."
+  },
+    "status": {
+    "title": "Stato del sistema",
+    "api": "API",
+    "database": "Database",
+    "ok": "Attivo",
+    "down": "Non raggiungibile",
+    "checking": "Verifica…",
+    "refresh": "Aggiorna"
+  },
+  "errors": {
+    "title": "Qualcosa è andato storto",
+    "generic": "Si è verificato un errore. Riprova tra poco.",
+    "network": "Impossibile contattare il server. Controlla la connessione."
   }
 }

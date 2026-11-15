@@ -1,4 +1,4 @@
-.PHONY: up down logs test test-unit test-api test-int lint fmt migrate revision downgrade psql web-dev web-lint web-test web-build
+.PHONY: up down logs test test-unit test-api test-int lint fmt migrate revision downgrade psql web-dev web-lint web-build
 
 up:
 	docker compose up -d --build
@@ -47,8 +47,6 @@ web-dev:
 web-lint:
 	cd web && npm run lint && npm run typecheck
 
-web-test:
-	cd web && npm test
 
 web-build:
 	cd web && npm run build

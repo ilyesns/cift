@@ -35,5 +35,19 @@
   },
   "footer": {
     "rights": "All rights reserved."
+  },
+    "status": {
+    "title": "System status",
+    "api": "API",
+    "database": "Database",
+    "ok": "Running",
+    "down": "Unreachable",
+    "checking": "Checking…",
+    "refresh": "Refresh"
+  },
+  "errors": {
+    "title": "Something went wrong",
+    "generic": "An error occurred. Please try again shortly.",
+    "network": "Can't reach the server. Check your connection."
   }
 }
