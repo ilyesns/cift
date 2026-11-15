@@ -3,6 +3,8 @@ import { useDisclosure } from "@mantine/hooks";
 import { useEffect, useLayoutEffect } from "react";
 import { useTranslation } from "react-i18next";
 import { Navigate, Outlet, useLocation, useParams } from "react-router-dom";
+import { UserMenu } from "@/features/auth/UserMenu";
+import { VerifyEmailBanner } from "@/features/auth/VerifyEmailBanner";
 import { applyLang } from "@/i18n";
 import { dirFor, isLang } from "@/i18n/languages";
 import { detectLang } from "@/i18n/storage";
@@ -20,7 +22,6 @@ export function AppLayout() {
   const { setDirection } = useDirection();
   const [menuOpen, { toggle, close }] = useDisclosure(false);
 
-  // Switch language and direction before paint, so Arabic never flashes left-to-right
   useLayoutEffect(() => {
     if (isLang(lang)) {
       applyLang(lang);
@@ -28,7 +29,6 @@ export function AppLayout() {
     }
   }, [lang, setDirection]);
 
-  // Close the phone drawer after navigating
   useEffect(() => {
     close();
   }, [pathname, close]);
@@ -57,6 +57,7 @@ export function AppLayout() {
               <Box visibleFrom="sm">
                 <LanguageSwitcher variant="header" />
               </Box>
+              <UserMenu />
               <Burger
                 opened={menuOpen}
                 onClick={toggle}
@@ -83,6 +84,7 @@ export function AppLayout() {
 
       <AppShell.Main className={classes.main}>
         <Container size="lg" py="xl" className={classes.content}>
+          <VerifyEmailBanner />
           <Outlet />
         </Container>
         <Footer />

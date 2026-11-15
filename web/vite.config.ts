@@ -10,9 +10,11 @@ export default defineConfig({
   server: {
     host: true,
     port: 5174,
-    strictPort: true, // fail loudly instead of silently moving to another port (CORS would break)
-    // File events don't always cross the Docker bind mount; polling fixes hot reload if needed
+    strictPort: true,
     watch: { usePolling: process.env.VITE_POLLING === "true" },
+    proxy: {
+      "/api": { target: "http://localhost:8010", changeOrigin: true },
+    },
   },
   
 });

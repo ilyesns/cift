@@ -45,9 +45,82 @@
     "checking": "Verifica…",
     "refresh": "Aggiorna"
   },
+    "auth": {
+    "signIn": "Accedi",
+    "signUp": "Registrati",
+    "signOut": "Esci",
+    "account": "Il mio profilo",
+    "email": "Email",
+    "password": "Password",
+    "newPassword": "Nuova password",
+    "currentPassword": "Password attuale",
+    "fullName": "Nome e cognome",
+    "signInTitle": "Bentornato",
+    "signInSubtitle": "Accedi al tuo account della comunità.",
+    "signUpTitle": "Crea un account",
+    "signUpSubtitle": "Serve per pubblicare annunci e ricevere notifiche.",
+    "noAccount": "Non hai un account?",
+    "haveAccount": "Hai già un account?",
+    "forgotLink": "Password dimenticata?",
+    "forgotTitle": "Reimposta la password",
+    "forgotSubtitle": "Inserisci la tua email: ti invieremo un link per scegliere una nuova password.",
+    "forgotSubmit": "Invia link",
+    "forgotSent": "Se esiste un account con questa email, riceverai un link entro pochi minuti.",
+    "resetTitle": "Scegli una nuova password",
+    "resetSubmit": "Salva password",
+    "resetDone": "Password aggiornata. Ora puoi accedere.",
+    "verifyTitle": "Verifica email",
+    "verifying": "Verifica in corso…",
+    "verifyDone": "Email verificata. Grazie!",
+    "verifyFailed": "Il link non è valido o è scaduto.",
+    "missingToken": "Il link è incompleto. Aprilo di nuovo dall'email.",
+    "unverifiedBanner": "Conferma il tuo indirizzo email per pubblicare annunci. Controlla la casella {{email}}.",
+    "resend": "Invia di nuovo",
+    "resent": "Email inviata",
+    "backToSignIn": "Torna all'accesso",
+    "goHome": "Vai alla home",
+    "verified": "Verificata",
+    "notVerified": "Non verificata",
+    "validation": {
+      "email": "Inserisci un indirizzo email valido",
+      "required": "Campo obbligatorio",
+      "passwordLength": "Almeno 8 caratteri",
+      "nameLength": "Almeno 2 caratteri"
+    }
+  },
+  "account": {
+    "title": "Il mio profilo",
+    "profile": "Dati personali",
+    "preferredLanguage": "Lingua preferita",
+    "preferredCity": "Città",
+    "save": "Salva",
+    "saved": "Profilo aggiornato",
+    "changePassword": "Cambia password",
+    "passwordChanged": "Password aggiornata"
+  },
+  "roles": {
+    "member": "Membro",
+    "editor": "Redattore",
+    "guide": "Guida",
+    "admin": "Amministratore",
+    "super_admin": "Super amministratore"
+  },
   "errors": {
     "title": "Qualcosa è andato storto",
     "generic": "Si è verificato un errore. Riprova tra poco.",
-    "network": "Impossibile contattare il server. Controlla la connessione."
+    "network": "Impossibile contattare il server. Controlla la connessione.",
+    "codes": {
+      "invalid_credentials": "Email o password non corretti.",
+      "email_taken": "Esiste già un account con questa email.",
+      "account_suspended": "Questo account è stato sospeso.",
+      "invalid_or_expired_token": "Il link non è valido o è scaduto.",
+      "wrong_password": "La password attuale non è corretta.",
+      "email_not_verified": "Conferma prima il tuo indirizzo email.",
+      "too_many_requests": "Troppi tentativi. Attendi un minuto e riprova.",
+      "forbidden": "Non hai i permessi per questa operazione.",
+      "super_admin_required": "Solo un super amministratore può farlo.",
+      "validation_error": "Alcuni campi non sono validi.",
+      "network_error": "Impossibile contattare il server. Controlla la connessione."
+    }
   }
 }

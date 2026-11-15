@@ -3,8 +3,18 @@ from typing import Self
 
 from sqlalchemy.orm import Session, sessionmaker
 
+from app.infrastructure.db.repositories.auth import (
+    SqlAlchemyActionTokenRepository,
+    SqlAlchemyRefreshSessionRepository,
+)
+from app.infrastructure.db.repositories.users import SqlAlchemyUserRepository
+
 
 class SqlAlchemyUnitOfWork:
+    users: SqlAlchemyUserRepository
+    action_tokens: SqlAlchemyActionTokenRepository
+    refresh_sessions: SqlAlchemyRefreshSessionRepository
+
     def __init__(self, session_factory: sessionmaker[Session]) -> None:
         self._session_factory = session_factory
         self._session: Session | None = None
@@ -17,8 +27,9 @@ class SqlAlchemyUnitOfWork:
 
     def __enter__(self) -> Self:
         self._session = self._session_factory()
-        # Sprint 1+: attach repositories here, e.g.
-        # self.users = SqlAlchemyUserRepository(self._session)
+        self.users = SqlAlchemyUserRepository(self._session)
+        self.action_tokens = SqlAlchemyActionTokenRepository(self._session)
+        self.refresh_sessions = SqlAlchemyRefreshSessionRepository(self._session)
         return self
 
     def __exit__(

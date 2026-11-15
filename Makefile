@@ -1,4 +1,4 @@
-.PHONY: up down logs test test-unit test-api test-int lint fmt migrate revision downgrade psql web-dev web-lint web-build
+.PHONY: up down logs test test-unit test-api test-int lint fmt migrate revision downgrade psql web-dev web-lint web-build superadminw
 
 up:
 	docker compose up -d --build
@@ -50,3 +50,7 @@ web-lint:
 
 web-build:
 	cd web && npm run build
+
+
+superadmin:
+	docker compose exec api python -m app.cli create-superadmin $(email) "$(name)"

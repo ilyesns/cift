@@ -45,9 +45,82 @@
     "checking": "Checking…",
     "refresh": "Refresh"
   },
+    "auth": {
+    "signIn": "Sign in",
+    "signUp": "Sign up",
+    "signOut": "Sign out",
+    "account": "My profile",
+    "email": "Email",
+    "password": "Password",
+    "newPassword": "New password",
+    "currentPassword": "Current password",
+    "fullName": "Full name",
+    "signInTitle": "Welcome back",
+    "signInSubtitle": "Sign in to your community account.",
+    "signUpTitle": "Create an account",
+    "signUpSubtitle": "You need one to post listings and get notifications.",
+    "noAccount": "No account yet?",
+    "haveAccount": "Already have an account?",
+    "forgotLink": "Forgot password?",
+    "forgotTitle": "Reset your password",
+    "forgotSubtitle": "Enter your email and we'll send you a link to choose a new password.",
+    "forgotSubmit": "Send link",
+    "forgotSent": "If an account exists for this email, you'll get a link within a few minutes.",
+    "resetTitle": "Choose a new password",
+    "resetSubmit": "Save password",
+    "resetDone": "Password updated. You can now sign in.",
+    "verifyTitle": "Confirm email",
+    "verifying": "Checking your link…",
+    "verifyDone": "Your email is confirmed. Thank you!",
+    "verifyFailed": "This link is invalid or has expired.",
+    "missingToken": "The link is incomplete. Open it again from the email.",
+    "unverifiedBanner": "Confirm your email address to post listings. Check the inbox for {{email}}.",
+    "resend": "Send again",
+    "resent": "Email sent",
+    "backToSignIn": "Back to sign in",
+    "goHome": "Go to home",
+    "verified": "Confirmed",
+    "notVerified": "Not confirmed",
+    "validation": {
+      "email": "Enter a valid email address",
+      "required": "This field is required",
+      "passwordLength": "At least 8 characters",
+      "nameLength": "At least 2 characters"
+    }
+  },
+  "account": {
+    "title": "My profile",
+    "profile": "Personal details",
+    "preferredLanguage": "Preferred language",
+    "preferredCity": "City",
+    "save": "Save",
+    "saved": "Profile updated",
+    "changePassword": "Change password",
+    "passwordChanged": "Password updated"
+  },
+  "roles": {
+    "member": "Member",
+    "editor": "Editor",
+    "guide": "Guide",
+    "admin": "Admin",
+    "super_admin": "Super admin"
+  },
   "errors": {
     "title": "Something went wrong",
     "generic": "An error occurred. Please try again shortly.",
-    "network": "Can't reach the server. Check your connection."
+    "network": "Can't reach the server. Check your connection.",
+    "codes": {
+      "invalid_credentials": "Email or password is incorrect.",
+      "email_taken": "An account with this email already exists.",
+      "account_suspended": "This account has been suspended.",
+      "invalid_or_expired_token": "This link is invalid or has expired.",
+      "wrong_password": "Your current password is incorrect.",
+      "email_not_verified": "Please confirm your email address first.",
+      "too_many_requests": "Too many attempts. Wait a minute and try again.",
+      "forbidden": "You don't have permission to do this.",
+      "super_admin_required": "Only a super admin can do this.",
+      "validation_error": "Some fields are invalid.",
+      "network_error": "Can't reach the server. Check your connection."
+    }
   }
 }
