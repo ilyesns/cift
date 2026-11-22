@@ -1,12 +1,13 @@
 from dataclasses import replace
-from datetime import date, datetime, timedelta
+from datetime import date, datetime, time, timedelta
 from types import TracebackType
 from typing import Self
 from uuid import UUID
+from zoneinfo import ZoneInfo
 
 from app.domain.auth import AccessClaims, AccessToken, ActionToken, RefreshSession, TokenPurpose
 from app.domain.exceptions import ConflictError, NotFoundError, UnauthenticatedError
-from app.domain.prayer import City, OfficialDay, PrayerSettings
+from app.domain.prayer import City, OfficialDay, PrayerSettings, SunTimes
 from app.domain.users import Role, User
 
 
@@ -218,3 +219,18 @@ class FakeClock:
 
     def advance(self, **kwargs: float) -> None:
         self.current += timedelta(**kwargs)
+
+
+class FakeSunCalculator:
+    """Same sunrise and sunset every day, so tests don't depend on astronomy."""
+
+    def __init__(self, sunrise: time = time(7, 18, 20), sunset: time = time(16, 43, 25)) -> None:
+        self.sunrise = sunrise
+        self.sunset = sunset
+
+    def sun_times(self, city: City, day: date) -> SunTimes:
+        tz = ZoneInfo(city.timezone)
+        return SunTimes(
+            sunrise=datetime.combine(day, self.sunrise, tzinfo=tz),
+            sunset=datetime.combine(day, self.sunset, tzinfo=tz),
+        )

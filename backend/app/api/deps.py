@@ -8,6 +8,7 @@ from app.api.rate_limit import FailureLimiter
 from app.application.account_service import AccountService
 from app.application.auth_service import AuthPolicy, AuthService
 from app.application.health_service import HealthService
+from app.application.prayer_times import PrayerTimesService
 from app.application.timetable_import import TimetableImportService
 from app.core.config import Settings
 from app.domain.exceptions import PermissionDeniedError, UnauthenticatedError
@@ -85,6 +86,13 @@ def get_timetable_import_service(uow: UowDep, sun: SunCalculatorDep) -> Timetabl
 
 
 TimetableImportServiceDep = Annotated[TimetableImportService, Depends(get_timetable_import_service)]
+
+
+def get_prayer_times_service(uow: UowDep, sun: SunCalculatorDep) -> PrayerTimesService:
+    return PrayerTimesService(uow=uow, sun=sun)
+
+
+PrayerTimesServiceDep = Annotated[PrayerTimesService, Depends(get_prayer_times_service)]
 
 
 def get_health_service(database: DatabaseDep, settings: SettingsDep) -> HealthService:
