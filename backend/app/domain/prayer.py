@@ -61,8 +61,6 @@ def ceil_minute(moment: datetime) -> datetime:
     return floored if floored == moment else floored + timedelta(minutes=1)
 
 
-
-
 def round_minute(moment: datetime) -> datetime:
     floored = floor_minute(moment)
     if moment - floored >= timedelta(seconds=30):

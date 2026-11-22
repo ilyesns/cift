@@ -16,19 +16,11 @@ class SqlAlchemyUnitOfWork:
     action_tokens: SqlAlchemyActionTokenRepository
     refresh_sessions: SqlAlchemyRefreshSessionRepository
     prayer: SqlAlchemyPrayerRepository
-    
+
     def __init__(self, session_factory: sessionmaker[Session]) -> None:
         self._session_factory = session_factory
         self._session: Session | None = None
 
-    def __enter__(self) -> Self:
-        self._session = self._session_factory()
-        self.users = SqlAlchemyUserRepository(self._session)
-        self.action_tokens = SqlAlchemyActionTokenRepository(self._session)
-        self.refresh_sessions = SqlAlchemyRefreshSessionRepository(self._session)
-        self.prayer = SqlAlchemyPrayerRepository(self._session)
-        return self
-    
     @property
     def session(self) -> Session:
         if self._session is None:
@@ -40,6 +32,7 @@ class SqlAlchemyUnitOfWork:
         self.users = SqlAlchemyUserRepository(self._session)
         self.action_tokens = SqlAlchemyActionTokenRepository(self._session)
         self.refresh_sessions = SqlAlchemyRefreshSessionRepository(self._session)
+        self.prayer = SqlAlchemyPrayerRepository(self._session)
         return self
 
     def __exit__(

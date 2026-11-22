@@ -53,15 +53,11 @@ class SqlAlchemyPrayerRepository:
         return city_id
 
     def list_cities(self) -> list[City]:
-        rows = self._session.scalars(
-            select(CityModel).where(CityModel.is_active).order_by(CityModel.name_it)
-        )
+        rows = self._session.scalars(select(CityModel).where(CityModel.is_active).order_by(CityModel.name_it))
         return [_city(row) for row in rows]
 
     def get_city(self, slug: str) -> City | None:
-        row = self._session.scalar(
-            select(CityModel).where(CityModel.slug == slug, CityModel.is_active)
-        )
+        row = self._session.scalar(select(CityModel).where(CityModel.slug == slug, CityModel.is_active))
         return _city(row) if row else None
 
     def get_settings(self, city_slug: str) -> PrayerSettings:
@@ -73,9 +69,7 @@ class SqlAlchemyPrayerRepository:
         if row is None:
             return PrayerSettings(iqama_offsets={}, jumuah_times=())
         offsets = {
-            p: getattr(row, f"iqama_{p.value}")
-            for p in IQAMA_PRAYERS
-            if getattr(row, f"iqama_{p.value}") is not None
+            p: getattr(row, f"iqama_{p.value}") for p in IQAMA_PRAYERS if getattr(row, f"iqama_{p.value}") is not None
         }
         return PrayerSettings(
             iqama_offsets=offsets,

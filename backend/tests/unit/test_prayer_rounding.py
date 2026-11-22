@@ -26,7 +26,6 @@ def test_ceil_moves_up_only_when_needed():
     assert ceil_minute(at(21, 0)) == at(21, 0)
 
 
- 
 def test_round_to_nearest_minute():
     assert round_minute(at(16, 43, 25)) == at(16, 43)
     assert round_minute(at(17, 5, 30)) == at(17, 6)

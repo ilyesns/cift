@@ -131,9 +131,7 @@ class InMemoryPrayerRepository:
 
     def get_days(self, city_slug: str, start: date, end: date) -> dict[date, OfficialDay]:
         return {
-            day: value
-            for (slug, day), value in sorted(self.days.items())
-            if slug == city_slug and start <= day <= end
+            day: value for (slug, day), value in sorted(self.days.items()) if slug == city_slug and start <= day <= end
         }
 
     def upsert_days(self, city_slug: str, days: list[OfficialDay]) -> int:
@@ -142,6 +140,7 @@ class InMemoryPrayerRepository:
         for day in days:
             self.days[(city_slug, day.day)] = day
         return len(days)
+
 
 class FakeUnitOfWork:
     """In-memory UnitOfWork. Data survives between 'with' blocks, like a real database."""
@@ -153,6 +152,7 @@ class FakeUnitOfWork:
         self.committed = False
         self.rolled_back = False
         self.prayer = InMemoryPrayerRepository()
+
     def __enter__(self) -> Self:
         self.committed = False
         self.rolled_back = False

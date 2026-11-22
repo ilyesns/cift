@@ -38,9 +38,7 @@ class PrayerDayModel(IdMixin, Base):
     __tablename__ = "prayer_days"
     __table_args__ = (UniqueConstraint("city_id", "day", name="uq_prayer_days_city_id_day"),)
 
-    city_id: Mapped[uuid.UUID] = mapped_column(
-        UUID(as_uuid=True), ForeignKey("cities.id", ondelete="CASCADE")
-    )
+    city_id: Mapped[uuid.UUID] = mapped_column(UUID(as_uuid=True), ForeignKey("cities.id", ondelete="CASCADE"))
     day: Mapped[date] = mapped_column(Date)
 
     # Local clock time, exactly as printed on the sheet

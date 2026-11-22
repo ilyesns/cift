@@ -10,6 +10,7 @@ from app.api.rate_limit import FailureLimiter
 from app.api.v1.router import api_router
 from app.application.auth_service import AuthPolicy
 from app.core.config import DEFAULT_JWT_SECRET, Settings, get_settings
+from app.infrastructure.astronomy.sun import AstralSunCalculator
 from app.infrastructure.db.database import Database
 from app.infrastructure.email.auth_notifier import EmailAuthNotifier
 from app.infrastructure.email.smtp import SmtpEmailSender
@@ -45,6 +46,7 @@ def build_services(app: FastAPI, settings: Settings) -> None:
     )
     app.state.login_limiter = FailureLimiter(settings.login_max_failures_per_minute, 60)
     app.state.email_limiter = FailureLimiter(3, 60)
+    app.state.sun_calculator = AstralSunCalculator()
 
 
 def create_app(settings: Settings | None = None) -> FastAPI:

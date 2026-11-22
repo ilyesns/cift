@@ -11,6 +11,7 @@ class UnitOfWork(Protocol):
     action_tokens: ActionTokenRepository
     refresh_sessions: RefreshSessionRepository
     prayer: PrayerRepository
+
     def __enter__(self) -> Self: ...
 
     def __exit__(

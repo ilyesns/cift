@@ -8,9 +8,11 @@ from app.api.rate_limit import FailureLimiter
 from app.application.account_service import AccountService
 from app.application.auth_service import AuthPolicy, AuthService
 from app.application.health_service import HealthService
+from app.application.timetable_import import TimetableImportService
 from app.core.config import Settings
 from app.domain.exceptions import PermissionDeniedError, UnauthenticatedError
 from app.domain.ports.auth import AccessTokenIssuer, AuthNotifier, PasswordHasher
+from app.domain.ports.prayer import SunCalculator
 from app.domain.ports.unit_of_work import UnitOfWork
 from app.domain.users import Role, User
 from app.infrastructure.db.database import Database
@@ -69,6 +71,20 @@ def get_uow(database: DatabaseDep) -> UnitOfWork:
 
 
 UowDep = Annotated[UnitOfWork, Depends(get_uow)]
+
+
+def get_sun_calculator(request: Request) -> SunCalculator:
+    return request.app.state.sun_calculator
+
+
+SunCalculatorDep = Annotated[SunCalculator, Depends(get_sun_calculator)]
+
+
+def get_timetable_import_service(uow: UowDep, sun: SunCalculatorDep) -> TimetableImportService:
+    return TimetableImportService(uow=uow, sun=sun)
+
+
+TimetableImportServiceDep = Annotated[TimetableImportService, Depends(get_timetable_import_service)]
 
 
 def get_health_service(database: DatabaseDep, settings: SettingsDep) -> HealthService:

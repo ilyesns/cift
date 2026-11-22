@@ -58,9 +58,7 @@ def upgrade() -> None:
         sa.Column("hijri_month", sa.SmallInteger(), nullable=True),
         sa.Column("hijri_year", sa.SmallInteger(), nullable=True),
         sa.Column("updated_at", TS, server_default=sa.func.now(), nullable=False),
-        sa.ForeignKeyConstraint(
-            ["city_id"], ["cities.id"], name="fk_prayer_days_city_id_cities", ondelete="CASCADE"
-        ),
+        sa.ForeignKeyConstraint(["city_id"], ["cities.id"], name="fk_prayer_days_city_id_cities", ondelete="CASCADE"),
         sa.PrimaryKeyConstraint("id", name="pk_prayer_days"),
         sa.UniqueConstraint("city_id", "day", name="uq_prayer_days_city_id_day"),
     )
@@ -75,9 +73,7 @@ def upgrade() -> None:
         sa.Column("iqama_isha", sa.SmallInteger(), nullable=True),
         sa.Column("sunrise_adjustment", sa.SmallInteger(), server_default="0", nullable=False),
         sa.Column("maghrib_adjustment", sa.SmallInteger(), server_default="0", nullable=False),
-        sa.Column(
-            "jumuah_times", postgresql.ARRAY(sa.Time()), server_default="{}", nullable=False
-        ),
+        sa.Column("jumuah_times", postgresql.ARRAY(sa.Time()), server_default="{}", nullable=False),
         sa.Column("updated_at", TS, server_default=sa.func.now(), nullable=False),
         sa.ForeignKeyConstraint(
             ["city_id"], ["cities.id"], name="fk_prayer_settings_city_id_cities", ondelete="CASCADE"
