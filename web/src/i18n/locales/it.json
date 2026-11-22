@@ -122,5 +122,46 @@
       "validation_error": "Alcuni campi non sono validi.",
       "network_error": "Impossibile contattare il server. Controlla la connessione."
     }
+  },
+    "prayer": {
+    "title": "Orari di preghiera",
+    "subtitle": "Firenze e provincia. Orari ufficiali dell'Associazione per la Moschea di Firenze.",
+    "names": {
+      "fajr": "Fajr",
+      "sunrise": "Shuruq (alba)",
+      "dhuhr": "Dhuhr",
+      "asr": "Asr",
+      "maghrib": "Maghrib",
+      "isha": "Isha"
+    },
+    "iqama": "Iqama",
+    "next": "Prossima preghiera",
+    "tomorrow": "domani",
+    "jumuah": "Preghiera del venerdì",
+    "calculated": "calcolato",
+    "notPublished": "Il calendario di oggi non è ancora pubblicato: alba e tramonto sono calcolati, gli altri orari arriveranno a breve.",
+    "monthNotPublished": "Il calendario ufficiale di questo mese non è ancora pubblicato. Gli orari con * sono calcolati.",
+    "month": "Calendario",
+    "date": "Data",
+    "hijri": "Egira",
+    "previousMonth": "Mese precedente",
+    "nextMonth": "Mese successivo",
+    "sourceNote": "Tutti gli orari seguono il calendario ufficiale dell'Associazione per la Moschea di Firenze; l'iqama è indicata secondo le indicazioni della moschea. Se il calendario di un mese non è ancora pubblicato, alba e tramonto sono calcolati astronomicamente e segnati come «calcolato»."
+  },
+  "hijri": {
+    "m1": "Muharram",
+    "m2": "Safar",
+    "m3": "Rabi' al-Awwal",
+    "m4": "Rabi' al-Akhir",
+    "m5": "Jumada al-Ula",
+    "m6": "Jumada al-Akhira",
+    "m7": "Rajab",
+    "m8": "Sha'ban",
+    "m9": "Ramadan",
+    "m10": "Shawwal",
+    "m11": "Dhu al-Qa'da",
+    "m12": "Dhu al-Hijja",
+    "suffix": "H"
   }
+
 }

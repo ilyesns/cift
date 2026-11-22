@@ -23,6 +23,7 @@ import { useLang } from "@/shared/hooks/useLang";
 import { withLang } from "@/shared/lib/paths";
 import classes from "./HomePage.module.css";
 import { SystemStatus } from "@/features/system/SystemStatus";
+import { NextPrayerCard } from "@/features/prayer/NextPrayerCard";
 
 const SECTIONS = [
   { key: "prayer", route: ROUTES.prayer, icon: IconMoonStars },
@@ -49,7 +50,8 @@ export function HomePage() {
           {t("home.subtitle")}
         </Text>
       </Stack>
-
+      
+      <NextPrayerCard />
       <SimpleGrid cols={{ base: 1, sm: 2, lg: 4 }} spacing="lg">
         {SECTIONS.map(({ key, route, icon: Icon }) => (
           <Card

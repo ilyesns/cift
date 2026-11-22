@@ -1,0 +1,57 @@
+.row {
+  padding: 10px 14px;
+  border-radius: var(--mantine-radius-md);
+  transition: background-color 150ms ease;
+}
+
+.row[data-next] {
+  background: var(--mantine-color-brand-light);
+}
+
+.row[data-next] .name {
+  color: var(--mantine-color-brand-light-color);
+}
+
+.time {
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.next {
+  text-align: end;
+}
+
+.countdown {
+  font-size: 28px;
+  font-weight: 800;
+  line-height: 1.2;
+  color: var(--mantine-color-brand-filled);
+  font-variant-numeric: tabular-nums;
+}
+
+.today td {
+  background: var(--mantine-color-brand-light) !important;
+  font-weight: 600;
+}
+
+.friday td:first-child {
+  color: var(--mantine-color-brand-filled);
+  font-weight: 600;
+}
+
+.cardLink {
+  color: inherit;
+  text-decoration: none;
+  transition: box-shadow 150ms ease;
+}
+
+.cardLink:hover {
+  box-shadow: var(--mantine-shadow-md);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .row,
+  .cardLink {
+    transition: none;
+  }
+}

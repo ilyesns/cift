@@ -122,5 +122,46 @@
       "validation_error": "Some fields are invalid.",
       "network_error": "Can't reach the server. Check your connection."
     }
+  },
+    "prayer": {
+    "title": "Prayer times",
+    "subtitle": "Florence and province. Official times from the Association for the Mosque of Florence.",
+    "names": {
+      "fajr": "Fajr",
+      "sunrise": "Sunrise (Shuruq)",
+      "dhuhr": "Dhuhr",
+      "asr": "Asr",
+      "maghrib": "Maghrib",
+      "isha": "Isha"
+    },
+    "iqama": "Iqama",
+    "next": "Next prayer",
+    "tomorrow": "tomorrow",
+    "jumuah": "Friday prayer",
+    "calculated": "calculated",
+    "notPublished": "Today's timetable isn't published yet: sunrise and Maghrib are calculated, and the other times will follow soon.",
+    "monthNotPublished": "The official timetable for this month isn't published yet. Times marked * are calculated.",
+    "month": "Timetable",
+    "date": "Date",
+    "hijri": "Hijri",
+    "previousMonth": "Previous month",
+    "nextMonth": "Next month",
+    "sourceNote": "All times follow the official timetable of the Association for the Mosque of Florence; iqama follows the mosque's guidance. When a month's timetable isn't published yet, sunrise and Maghrib are calculated astronomically and marked \"calculated\"."
+  },
+  "hijri": {
+    "m1": "Muharram",
+    "m2": "Safar",
+    "m3": "Rabi' al-Awwal",
+    "m4": "Rabi' al-Akhir",
+    "m5": "Jumada al-Ula",
+    "m6": "Jumada al-Akhira",
+    "m7": "Rajab",
+    "m8": "Sha'ban",
+    "m9": "Ramadan",
+    "m10": "Shawwal",
+    "m11": "Dhu al-Qa'da",
+    "m12": "Dhu al-Hijja",
+    "suffix": "AH"
   }
+
 }
