@@ -103,9 +103,7 @@ class AuthService:
             user = uow.users.get_by_email(normalize_email(email))
             if user is None or user.is_verified or not user.is_active:
                 return
-            token = self._new_action_token(
-                uow, user.id, TokenPurpose.VERIFY_EMAIL, self._policy.verify_email_ttl
-            )
+            token = self._new_action_token(uow, user.id, TokenPurpose.VERIFY_EMAIL, self._policy.verify_email_ttl)
             uow.commit()
         self._notify(self._notifier.send_verification, user, token)
 
@@ -115,13 +113,9 @@ class AuthService:
         with self._uow as uow:
             user = uow.users.get_by_email(normalize_email(email))
             if user is None or not self._hasher.verify(user.password_hash, password):
-                raise UnauthenticatedError(
-                    "Email or password is incorrect.", code="invalid_credentials"
-                )
+                raise UnauthenticatedError("Email or password is incorrect.", code="invalid_credentials")
             if not user.is_active:
-                raise PermissionDeniedError(
-                    "This account has been suspended.", code="account_suspended"
-                )
+                raise PermissionDeniedError("This account has been suspended.", code="account_suspended")
             if self._hasher.needs_rehash(user.password_hash):
                 uow.users.set_password_hash(user.id, self._hasher.hash(password))
             result = self._start_session(uow, user, family_id=uuid4(), user_agent=user_agent)
@@ -143,14 +137,10 @@ class AuthService:
                 # An old token came back: assume it was stolen and end every session in the chain
                 uow.refresh_sessions.revoke_family(current.family_id, now)
                 uow.commit()
-                raise UnauthenticatedError(
-                    "Your session has ended. Please sign in again.", code="session_reused"
-                )
+                raise UnauthenticatedError("Your session has ended. Please sign in again.", code="session_reused")
 
             if current.expires_at <= now:
-                raise UnauthenticatedError(
-                    "Your session has expired. Please sign in again.", code="session_expired"
-                )
+                raise UnauthenticatedError("Your session has expired. Please sign in again.", code="session_expired")
 
             user = uow.users.get(current.user_id)
             if user is None or not user.is_active:
@@ -159,9 +149,7 @@ class AuthService:
                 raise UnauthenticatedError("Please sign in again.", code="invalid_session")
 
             uow.refresh_sessions.revoke(current.id, now)
-            result = self._start_session(
-                uow, user, family_id=current.family_id, user_agent=user_agent
-            )
+            result = self._start_session(uow, user, family_id=current.family_id, user_agent=user_agent)
             uow.commit()
         return result
 
@@ -182,9 +170,7 @@ class AuthService:
             user = uow.users.get_by_email(normalize_email(email))
             if user is None or not user.is_active:
                 return
-            token = self._new_action_token(
-                uow, user.id, TokenPurpose.RESET_PASSWORD, self._policy.reset_password_ttl
-            )
+            token = self._new_action_token(uow, user.id, TokenPurpose.RESET_PASSWORD, self._policy.reset_password_ttl)
             uow.commit()
         self._notify(self._notifier.send_password_reset, user, token)
 
@@ -201,9 +187,7 @@ class AuthService:
 
     # --- helpers -----------------------------------------------------------------
 
-    def _start_session(
-        self, uow: UnitOfWork, user: User, *, family_id: UUID, user_agent: str | None
-    ) -> AuthResult:
+    def _start_session(self, uow: UnitOfWork, user: User, *, family_id: UUID, user_agent: str | None) -> AuthResult:
         raw, digest = new_opaque_token()
         expires_at = self._now() + self._policy.refresh_ttl
         uow.refresh_sessions.add(
@@ -223,9 +207,7 @@ class AuthService:
             refresh_expires_at=expires_at,
         )
 
-    def _new_action_token(
-        self, uow: UnitOfWork, user_id: UUID, purpose: TokenPurpose, ttl: timedelta
-    ) -> str:
+    def _new_action_token(self, uow: UnitOfWork, user_id: UUID, purpose: TokenPurpose, ttl: timedelta) -> str:
         now = self._now()
         uow.action_tokens.invalidate_for_user(user_id, purpose, now)  # only the newest link works
         raw, digest = new_opaque_token()
@@ -240,14 +222,10 @@ class AuthService:
         )
         return raw
 
-    def _use_action_token(
-        self, uow: UnitOfWork, raw: str, purpose: TokenPurpose, now: datetime
-    ) -> ActionToken:
+    def _use_action_token(self, uow: UnitOfWork, raw: str, purpose: TokenPurpose, now: datetime) -> ActionToken:
         record = uow.action_tokens.get_by_hash(hash_token(raw), purpose)
         if record is None or not record.is_usable(now):
-            raise ValidationFailedError(
-                "This link is invalid or has expired.", code="invalid_or_expired_token"
-            )
+            raise ValidationFailedError("This link is invalid or has expired.", code="invalid_or_expired_token")
         uow.action_tokens.mark_used(record.id, now)
         return record
 

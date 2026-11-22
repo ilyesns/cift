@@ -56,9 +56,7 @@ def status_for(exc: DomainError) -> int:
 def register_error_handlers(app: FastAPI) -> None:
     @app.exception_handler(DomainError)
     async def domain_error(_: Request, exc: DomainError) -> JSONResponse:
-        return JSONResponse(
-            status_code=status_for(exc), content=error_body(exc.code, exc.message, exc.details)
-        )
+        return JSONResponse(status_code=status_for(exc), content=error_body(exc.code, exc.message, exc.details))
 
     @app.exception_handler(StarletteHTTPException)
     async def http_error(_: Request, exc: StarletteHTTPException) -> JSONResponse:
@@ -71,9 +69,7 @@ def register_error_handlers(app: FastAPI) -> None:
 
     @app.exception_handler(RequestValidationError)
     async def validation_error(_: Request, exc: RequestValidationError) -> JSONResponse:
-        details = [
-            {"field": ".".join(str(p) for p in e["loc"]), "message": e["msg"]} for e in exc.errors()
-        ]
+        details = [{"field": ".".join(str(p) for p in e["loc"]), "message": e["msg"]} for e in exc.errors()]
         return JSONResponse(
             status_code=422,
             content=error_body("validation_error", "Some fields are invalid.", details),

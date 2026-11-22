@@ -1,11 +1,12 @@
 from dataclasses import replace
-from datetime import datetime, timedelta
+from datetime import date, datetime, timedelta
 from types import TracebackType
 from typing import Self
 from uuid import UUID
 
 from app.domain.auth import AccessClaims, AccessToken, ActionToken, RefreshSession, TokenPurpose
 from app.domain.exceptions import ConflictError, NotFoundError, UnauthenticatedError
+from app.domain.prayer import City, OfficialDay, PrayerSettings
 from app.domain.users import Role, User
 
 
@@ -113,6 +114,35 @@ class InMemoryRefreshSessionRepository:
         self._revoke([s for s in self.items.values() if s.user_id == user_id], at)
 
 
+class InMemoryPrayerRepository:
+    def __init__(self) -> None:
+        self.cities: dict[str, City] = {}
+        self.settings: dict[str, PrayerSettings] = {}
+        self.days: dict[tuple[str, date], OfficialDay] = {}
+
+    def list_cities(self) -> list[City]:
+        return sorted(self.cities.values(), key=lambda c: c.slug)
+
+    def get_city(self, slug: str) -> City | None:
+        return self.cities.get(slug)
+
+    def get_settings(self, city_slug: str) -> PrayerSettings:
+        return self.settings.get(city_slug, PrayerSettings(iqama_offsets={}, jumuah_times=()))
+
+    def get_days(self, city_slug: str, start: date, end: date) -> dict[date, OfficialDay]:
+        return {
+            day: value
+            for (slug, day), value in sorted(self.days.items())
+            if slug == city_slug and start <= day <= end
+        }
+
+    def upsert_days(self, city_slug: str, days: list[OfficialDay]) -> int:
+        if city_slug not in self.cities:
+            raise NotFoundError("City not found.", code="city_not_found")
+        for day in days:
+            self.days[(city_slug, day.day)] = day
+        return len(days)
+
 class FakeUnitOfWork:
     """In-memory UnitOfWork. Data survives between 'with' blocks, like a real database."""
 
@@ -122,7 +152,7 @@ class FakeUnitOfWork:
         self.refresh_sessions = InMemoryRefreshSessionRepository()
         self.committed = False
         self.rolled_back = False
-
+        self.prayer = InMemoryPrayerRepository()
     def __enter__(self) -> Self:
         self.committed = False
         self.rolled_back = False

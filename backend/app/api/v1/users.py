@@ -23,8 +23,6 @@ def update_me(body: UpdateProfileIn, user: CurrentUser, service: AccountServiceD
 
 
 @router.post("/me/password", status_code=status.HTTP_204_NO_CONTENT)
-def change_password(
-    body: ChangePasswordIn, user: CurrentUser, service: AccountServiceDep
-) -> Response:
+def change_password(body: ChangePasswordIn, user: CurrentUser, service: AccountServiceDep) -> Response:
     service.change_password(user.id, current=body.current_password, new=body.new_password)
     return Response(status_code=status.HTTP_204_NO_CONTENT)

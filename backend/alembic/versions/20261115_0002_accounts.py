@@ -42,9 +42,7 @@ def upgrade() -> None:
         "user_roles",
         sa.Column("user_id", UUID, nullable=False),
         sa.Column("role", sa.String(20), nullable=False),
-        sa.ForeignKeyConstraint(
-            ["user_id"], ["users.id"], name="fk_user_roles_user_id_users", ondelete="CASCADE"
-        ),
+        sa.ForeignKeyConstraint(["user_id"], ["users.id"], name="fk_user_roles_user_id_users", ondelete="CASCADE"),
         sa.PrimaryKeyConstraint("user_id", "role", name="pk_user_roles"),
     )
 
@@ -57,9 +55,7 @@ def upgrade() -> None:
         sa.Column("expires_at", TS, nullable=False),
         sa.Column("used_at", TS, nullable=True),
         sa.Column("created_at", TS, server_default=sa.func.now(), nullable=False),
-        sa.ForeignKeyConstraint(
-            ["user_id"], ["users.id"], name="fk_action_tokens_user_id_users", ondelete="CASCADE"
-        ),
+        sa.ForeignKeyConstraint(["user_id"], ["users.id"], name="fk_action_tokens_user_id_users", ondelete="CASCADE"),
         sa.PrimaryKeyConstraint("id", name="pk_action_tokens"),
         sa.UniqueConstraint("token_hash", name="uq_action_tokens_token_hash"),
     )

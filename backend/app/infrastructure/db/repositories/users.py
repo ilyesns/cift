@@ -62,9 +62,7 @@ class SqlAlchemyUserRepository:
         try:
             self._session.flush()
         except IntegrityError as exc:  # two sign-ups with the same email at the same moment
-            raise ConflictError(
-                "An account with this email already exists.", code="email_taken"
-            ) from exc
+            raise ConflictError("An account with this email already exists.", code="email_taken") from exc
 
     def mark_verified(self, user_id: UUID, at: datetime) -> None:
         self._row(user_id).email_verified_at = at
@@ -95,7 +93,5 @@ class SqlAlchemyUserRepository:
             pattern = f"%{query.strip()}%"
             stmt = stmt.where(or_(UserModel.email.ilike(pattern), UserModel.full_name.ilike(pattern)))
         total = self._session.scalar(select(func.count()).select_from(stmt.subquery())) or 0
-        rows = self._session.scalars(
-            stmt.order_by(UserModel.created_at.desc()).offset(offset).limit(limit)
-        ).all()
+        rows = self._session.scalars(stmt.order_by(UserModel.created_at.desc()).offset(offset).limit(limit)).all()
         return [to_domain(r) for r in rows], total

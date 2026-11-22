@@ -1,6 +1,6 @@
 """Admin commands, run inside the API container:
 
-    docker compose exec api python -m app.cli create-superadmin you@example.com "Your Name"
+docker compose exec api python -m app.cli create-superadmin you@example.com "Your Name"
 """
 
 import argparse

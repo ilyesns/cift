@@ -72,9 +72,7 @@ def register(
     service: AuthServiceDep,
     settings: SettingsDep,
 ) -> SessionOut:
-    locale = body.preferred_locale or locale_from_accept_language(
-        request.headers.get("accept-language")
-    )
+    locale = body.preferred_locale or locale_from_accept_language(request.headers.get("accept-language"))
     result = service.register(
         email=body.email,
         password=body.password,
@@ -97,9 +95,7 @@ def login(
     key = _client_key(request)
     limiter.check(key)
     try:
-        result = service.login(
-            email=body.email, password=body.password, user_agent=_user_agent(request)
-        )
+        result = service.login(email=body.email, password=body.password, user_agent=_user_agent(request))
     except UnauthenticatedError:
         limiter.record(key)
         raise
@@ -136,9 +132,7 @@ def verify_email(body: TokenIn, service: AuthServiceDep) -> UserOut:
     return UserOut.from_domain(service.verify_email(body.token))
 
 
-@router.post(
-    "/resend-verification", response_model=MessageOut, status_code=status.HTTP_202_ACCEPTED
-)
+@router.post("/resend-verification", response_model=MessageOut, status_code=status.HTTP_202_ACCEPTED)
 def resend_verification(
     body: EmailIn, request: Request, service: AuthServiceDep, limiter: EmailLimiterDep
 ) -> MessageOut:
@@ -150,9 +144,7 @@ def resend_verification(
 
 
 @router.post("/forgot-password", response_model=MessageOut, status_code=status.HTTP_202_ACCEPTED)
-def forgot_password(
-    body: EmailIn, request: Request, service: AuthServiceDep, limiter: EmailLimiterDep
-) -> MessageOut:
+def forgot_password(body: EmailIn, request: Request, service: AuthServiceDep, limiter: EmailLimiterDep) -> MessageOut:
     key = _client_key(request)
     limiter.check(key)
     limiter.record(key)

@@ -20,8 +20,7 @@ MESSAGES: dict[str, dict[str, dict[str, str]]] = {
             "body": "Grazie per esserti registrato sul sito della comunità. "
             "Conferma il tuo indirizzo email per completare la registrazione.",
             "button": "Conferma email",
-            "note": "Il link scade tra {hours} ore. Se non hai creato tu questo account, "
-            "ignora questa email.",
+            "note": "Il link scade tra {hours} ore. Se non hai creato tu questo account, " "ignora questa email.",
         },
         "ar": {
             "subject": "تأكيد بريدك الإلكتروني",
@@ -112,8 +111,5 @@ class EmailAuthNotifier:
             link=link,
             **text,
         )
-        plain = (
-            f"{text['greeting']} {user.full_name}{comma}\n\n"
-            f"{text['body']}\n\n{link}\n\n{text['note']}\n"
-        )
+        plain = f"{text['greeting']} {user.full_name}{comma}\n\n" f"{text['body']}\n\n{link}\n\n{text['note']}\n"
         self._sender.send(to=user.email, subject=text["subject"], html=html, text=plain)

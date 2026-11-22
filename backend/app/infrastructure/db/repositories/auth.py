@@ -43,9 +43,7 @@ class SqlAlchemyActionTokenRepository:
         )
 
     def mark_used(self, token_id: UUID, at: datetime) -> None:
-        self._session.execute(
-            update(ActionTokenModel).where(ActionTokenModel.id == token_id).values(used_at=at)
-        )
+        self._session.execute(update(ActionTokenModel).where(ActionTokenModel.id == token_id).values(used_at=at))
 
     def invalidate_for_user(self, user_id: UUID, purpose: TokenPurpose, at: datetime) -> None:
         self._session.execute(
@@ -77,9 +75,7 @@ class SqlAlchemyRefreshSessionRepository:
         )
 
     def get_by_hash(self, token_hash: str) -> RefreshSession | None:
-        row = self._session.scalar(
-            select(RefreshSessionModel).where(RefreshSessionModel.token_hash == token_hash)
-        )
+        row = self._session.scalar(select(RefreshSessionModel).where(RefreshSessionModel.token_hash == token_hash))
         if row is None:
             return None
         return RefreshSession(

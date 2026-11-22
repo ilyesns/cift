@@ -30,7 +30,5 @@ class HealthService:
         try:
             self._probe.ping()
         except Exception as exc:
-            raise ServiceUnavailableError(
-                "Database is not reachable.", code="database_unavailable"
-            ) from exc
+            raise ServiceUnavailableError("Database is not reachable.", code="database_unavailable") from exc
         return DatabaseReport(status="ok", database="up")

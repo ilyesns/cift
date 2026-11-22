@@ -19,9 +19,7 @@ class UserModel(IdMixin, TimestampMixin, Base):
     is_active: Mapped[bool] = mapped_column(Boolean, server_default=true())
     email_verified_at: Mapped[datetime | None] = mapped_column(DateTime(timezone=True))
 
-    roles: Mapped[list["UserRoleModel"]] = relationship(
-        cascade="all, delete-orphan", lazy="selectin"
-    )
+    roles: Mapped[list["UserRoleModel"]] = relationship(cascade="all, delete-orphan", lazy="selectin")
 
 
 class UserRoleModel(Base):

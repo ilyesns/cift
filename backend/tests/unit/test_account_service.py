@@ -81,9 +81,7 @@ def test_change_password_checks_the_current_one(service, uow):
 
 def test_update_profile_trims_and_normalizes(service, uow):
     user = make_user(uow)
-    updated = service.update_profile(
-        user.id, full_name="  Omar  ", preferred_locale="ar-TN", preferred_city="  "
-    )
+    updated = service.update_profile(user.id, full_name="  Omar  ", preferred_locale="ar-TN", preferred_city="  ")
     assert (updated.full_name, updated.preferred_locale, updated.preferred_city) == (
         "Omar",
         "ar",

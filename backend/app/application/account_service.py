@@ -43,15 +43,11 @@ class AccountService:
         with self._uow as uow:
             user = self._require(uow, user_id)
             if not self._hasher.verify(user.password_hash, current):
-                raise ValidationFailedError(
-                    "Current password is incorrect.", code="wrong_password"
-                )
+                raise ValidationFailedError("Current password is incorrect.", code="wrong_password")
             uow.users.set_password_hash(user_id, self._hasher.hash(new))
             uow.commit()
 
-    def search_users(
-        self, *, query: str | None, page: int, page_size: int
-    ) -> tuple[list[User], int]:
+    def search_users(self, *, query: str | None, page: int, page_size: int) -> tuple[list[User], int]:
         with self._uow as uow:
             return uow.users.search(query=query, offset=(page - 1) * page_size, limit=page_size)
 
@@ -61,17 +57,9 @@ class AccountService:
             target = self._require(uow, user_id)
             changed = wanted ^ target.roles
             if changed & PRIVILEGED_ROLES and Role.SUPER_ADMIN not in actor.roles:
-                raise PermissionDeniedError(
-                    "Only a super admin can change admin roles.", code="super_admin_required"
-                )
-            if (
-                target.id == actor.id
-                and Role.SUPER_ADMIN in target.roles
-                and Role.SUPER_ADMIN not in wanted
-            ):
-                raise ConflictError(
-                    "You can't remove your own super admin role.", code="cannot_demote_self"
-                )
+                raise PermissionDeniedError("Only a super admin can change admin roles.", code="super_admin_required")
+            if target.id == actor.id and Role.SUPER_ADMIN in target.roles and Role.SUPER_ADMIN not in wanted:
+                raise ConflictError("You can't remove your own super admin role.", code="cannot_demote_self")
             uow.users.set_roles(user_id, wanted)
             uow.commit()
         return replace(target, roles=wanted)
